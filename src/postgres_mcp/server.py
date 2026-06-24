@@ -35,7 +35,8 @@ from .sql import obfuscate_password
 from .top_queries import TopQueriesCalc
 
 # Initialize FastMCP with default settings
-mcp = FastMCP("postgres-mcp")
+from mcp.server.transport_security import TransportSecuritySettings
+mcp = FastMCP("postgres-mcp", transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False))
 
 # Constants
 PG_STAT_STATEMENTS = "pg_stat_statements"
