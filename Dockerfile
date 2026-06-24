@@ -13,9 +13,8 @@ WORKDIR /app
 RUN apt-get update \
   && apt-get install -y libpq-dev gcc \
   && rm -rf /var/lib/apt/lists/*
+COPY uv.lock pyproject.toml ./
 RUN --mount=type=cache,id=s/463a4a96-46b7-49a5-8f22-1839791748a0-/root/.cache/uv,target=/root/.cache/uv \
-  --mount=type=bind,source=uv.lock,target=uv.lock \
-  --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
   uv sync --frozen --no-install-project --no-dev
 ADD . /app
 RUN --mount=type=cache,id=s/463a4a96-46b7-49a5-8f22-1839791748a0-/root/.cache/uv,target=/root/.cache/uv \
