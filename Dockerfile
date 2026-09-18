@@ -14,10 +14,10 @@ RUN apt-get update \
   && apt-get install -y libpq-dev gcc \
   && rm -rf /var/lib/apt/lists/*
 COPY uv.lock pyproject.toml ./
-RUN --mount=type=cache,id=s/86d6607f-d729-4202-bfe4-964b6b5b3b37-/root/.cache/uv,target=/root/.cache/uv \
+RUN --mount=type=cache,id=s/1bf8080c-68f9-4447-9b9d-b00a917e5485-/root/.cache/uv,target=/root/.cache/uv \
 uv sync --frozen --no-install-project --no-dev
 ADD . /app
-RUN --mount=type=cache,id=s/86d6607f-d729-4202-bfe4-964b6b5b3b37-/root/.cache/uv,target=/root/.cache/uv \
+RUN --mount=type=cache,id=s/1bf8080c-68f9-4447-9b9d-b00a917e5485-/root/.cache/uv,target=/root/.cache/uv \
   uv sync --frozen --no-dev
 
 
